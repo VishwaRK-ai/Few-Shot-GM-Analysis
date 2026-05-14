@@ -1,7 +1,7 @@
 # 🧠 Few-Shot Generative Modelling Architectures Analysis
 
 [![Weights](https://img.shields.io/badge/Weights-Hugging_Face-FFD21E.svg?style=flat-square&logo=huggingface)](https://huggingface.co/VishyRK/Few-Shot-GM-DC-Weights/tree/main)
-[![Report](https://img.shields.io/badge/Report-48_Page_PDF-red.svg?style=flat-square)](#)
+[![Report](https://img.shields.io/badge/Report-63_Page_PDF-red.svg?style=flat-square)](#)
 
 ## 📖 1. Project Abstract / Overview
 
