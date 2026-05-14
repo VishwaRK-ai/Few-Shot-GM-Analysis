@@ -1,0 +1,20 @@
+# Weights & Data
+*.pkl
+*.pt
+*.pth
+*.zip
+training-runs/
+data/
+datasets/
+anime_subset_256/
+
+# Environments
+venv/
+env/
+__pycache__/
+.ipynb_checkpoints/
+
+# Ignore unused models
+AdAM/
+GenCo/
+Report.docx
