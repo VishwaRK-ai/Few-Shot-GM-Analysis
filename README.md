@@ -13,6 +13,7 @@ The source code in this repository focuses on four primary architectures evaluat
 * **FakeCLR**
 * **InsGen**
 
+
 ## 📊 The "FID Illusion"
 Through a standardized benchmarking pipeline using 8 distinct metrics (FID, KID, LPIPS, MS-SSIM, Precision, Recall, Density, Coverage), we empirically validated the **"FID Illusion"** in constrained settings. 
 
@@ -22,3 +23,10 @@ Quantitative evidence demonstrates that models achieving robust Fréchet Incepti
 *(Sample outputs from extreme low-shot generation)*
 
 ![Sample Outputs](./samples/sample1.png)
+
+
+**Download Pre-trained Weights**
+Due to strict file size constraints, the final network snapshots (~1.3 GB) for the evaluation suite are hosted externally on Hugging Face. 
+
+You can download the final pre-trained weights for all four architectures (StyleGAN2-ADA, DANI, FakeCLR, and InsGen) here:
+🔗 **[Few-Shot-GM-DC-Weights on Hugging Face](https://huggingface.co/VishyRK/Few-Shot-GM-DC-Weights/tree/main)**
