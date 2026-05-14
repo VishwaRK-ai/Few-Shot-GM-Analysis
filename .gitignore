@@ -216,3 +216,17 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+
+
+# Ignore model weights and checkpoints
+*.pt
+*.pth
+*.pkl
+*.ckpt
+weights/
+checkpoints/
+
+# Ignore massive raw datasets
+data/
+datasets/
