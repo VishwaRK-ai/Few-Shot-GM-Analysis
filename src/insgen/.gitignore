@@ -1,0 +1,10 @@
+# Ignore heavy weights and data
+training-runs/
+*.pkl
+*.pt
+*.pth
+*.zip
+data/
+datasets/
+__pycache__/
+*_env/

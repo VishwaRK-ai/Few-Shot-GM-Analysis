@@ -1,0 +1,113 @@
+Loading network from "training-runs\00001-obama-auto1\network-snapshot-000096.pkl"...
+Dataset options:
+{
+  "class_name": "training.dataset.ImageFolderDataset",
+  "path": "datasets/obama.zip",
+  "use_labels": false,
+  "max_size": 100,
+  "xflip": false,
+  "resolution": 256
+}
+Launching processes...
+Setting up PyTorch plugin "bias_act_plugin"... Done.
+Setting up PyTorch plugin "upfirdn2d_plugin"... Done.
+
+Generator             Parameters  Buffers  Output shape        Datatype
+---                   ---         ---      ---                 ---     
+mapping.fc0           262656      -        [1, 512]            float32 
+mapping.fc1           262656      -        [1, 512]            float32 
+mapping               -           512      [1, 14, 512]        float32 
+synthesis.b4.conv1    2622465     32       [1, 512, 4, 4]      float32 
+synthesis.b4.torgb    264195      -        [1, 3, 4, 4]        float32 
+synthesis.b4:0        8192        16       [1, 512, 4, 4]      float32 
+synthesis.b4:1        -           -        [1, 512, 4, 4]      float32 
+synthesis.b8.conv0    2622465     80       [1, 512, 8, 8]      float32 
+synthesis.b8.conv1    2622465     80       [1, 512, 8, 8]      float32 
+synthesis.b8.torgb    264195      -        [1, 3, 8, 8]        float32 
+synthesis.b8:0        -           16       [1, 512, 8, 8]      float32 
+synthesis.b8:1        -           -        [1, 512, 8, 8]      float32 
+synthesis.b16.conv0   2622465     272      [1, 512, 16, 16]    float32 
+synthesis.b16.conv1   2622465     272      [1, 512, 16, 16]    float32 
+synthesis.b16.torgb   264195      -        [1, 3, 16, 16]      float32 
+synthesis.b16:0       -           16       [1, 512, 16, 16]    float32 
+synthesis.b16:1       -           -        [1, 512, 16, 16]    float32 
+synthesis.b32.conv0   2622465     1040     [1, 512, 32, 32]    float16 
+synthesis.b32.conv1   2622465     1040     [1, 512, 32, 32]    float16 
+synthesis.b32.torgb   264195      -        [1, 3, 32, 32]      float16 
+synthesis.b32:0       -           16       [1, 512, 32, 32]    float16 
+synthesis.b32:1       -           -        [1, 512, 32, 32]    float32 
+synthesis.b64.conv0   1442561     4112     [1, 256, 64, 64]    float16 
+synthesis.b64.conv1   721409      4112     [1, 256, 64, 64]    float16 
+synthesis.b64.torgb   132099      -        [1, 3, 64, 64]      float16 
+synthesis.b64:0       -           16       [1, 256, 64, 64]    float16 
+synthesis.b64:1       -           -        [1, 256, 64, 64]    float32 
+synthesis.b128.conv0  426369      16400    [1, 128, 128, 128]  float16 
+synthesis.b128.conv1  213249      16400    [1, 128, 128, 128]  float16 
+synthesis.b128.torgb  66051       -        [1, 3, 128, 128]    float16 
+synthesis.b128:0      -           16       [1, 128, 128, 128]  float16 
+synthesis.b128:1      -           -        [1, 128, 128, 128]  float32 
+synthesis.b256.conv0  139457      65552    [1, 64, 256, 256]   float16 
+synthesis.b256.conv1  69761       65552    [1, 64, 256, 256]   float16 
+synthesis.b256.torgb  33027       -        [1, 3, 256, 256]    float16 
+synthesis.b256:0      -           16       [1, 64, 256, 256]   float16 
+synthesis.b256:1      -           -        [1, 64, 256, 256]   float32 
+---                   ---         ---      ---                 ---     
+Total                 23191522    175568   -                   -       
+
+Calculating ppl2_wend...
+Downloading https://nvlabs-fi-cdn.nvidia.com/stylegan2-ada-pytorch/pretrained/metrics/vgg16.pt ... done
+C:\Users\vishw\AppData\Local\Programs\Python\Python38\lib\site-packages\torch\nn\modules\module.py:1051: UserWarning: Named tensors and all their associated APIs are an experimental feature and subject to change. Please do not use them for anything important until they are released as stable. (Triggered internally at  ..\c10/core/TensorImpl.h:1156.)
+  return forward_call(*input, **kwargs)
+ppl sampling        items 1000    time 55s          ms/item 54.63
+ppl sampling        items 2000    time 1m 48s       ms/item 53.30
+ppl sampling        items 3000    time 2m 41s       ms/item 53.28
+ppl sampling        items 4000    time 3m 35s       ms/item 53.30
+ppl sampling        items 5000    time 4m 27s       ms/item 52.98
+ppl sampling        items 6000    time 5m 21s       ms/item 53.39
+ppl sampling        items 7000    time 6m 14s       ms/item 53.13
+ppl sampling        items 8000    time 7m 07s       ms/item 52.99
+ppl sampling        items 9000    time 8m 02s       ms/item 55.04
+ppl sampling        items 10000   time 8m 57s       ms/item 54.86
+ppl sampling        items 11000   time 9m 51s       ms/item 54.14
+ppl sampling        items 12000   time 10m 45s      ms/item 54.41
+ppl sampling        items 13000   time 11m 40s      ms/item 54.19
+ppl sampling        items 14000   time 12m 34s      ms/item 54.05
+ppl sampling        items 15000   time 13m 26s      ms/item 52.77
+ppl sampling        items 16000   time 14m 18s      ms/item 51.98
+ppl sampling        items 17000   time 14m 56s      ms/item 37.86
+ppl sampling        items 18000   time 15m 34s      ms/item 37.80
+ppl sampling        items 19000   time 16m 13s      ms/item 38.50
+ppl sampling        items 20000   time 16m 51s      ms/item 38.09
+ppl sampling        items 21000   time 17m 28s      ms/item 37.62
+ppl sampling        items 22000   time 18m 07s      ms/item 38.45
+ppl sampling        items 23000   time 18m 45s      ms/item 37.74
+ppl sampling        items 24000   time 19m 23s      ms/item 38.33
+ppl sampling        items 25000   time 20m 01s      ms/item 37.87
+ppl sampling        items 26000   time 20m 38s      ms/item 37.58
+ppl sampling        items 27000   time 21m 16s      ms/item 37.62
+ppl sampling        items 28000   time 21m 54s      ms/item 37.68
+ppl sampling        items 29000   time 22m 31s      ms/item 37.78
+ppl sampling        items 30000   time 23m 09s      ms/item 38.07
+ppl sampling        items 31000   time 23m 47s      ms/item 38.04
+ppl sampling        items 32000   time 24m 25s      ms/item 37.93
+ppl sampling        items 33000   time 25m 03s      ms/item 37.69
+ppl sampling        items 34000   time 25m 41s      ms/item 37.52
+ppl sampling        items 35000   time 26m 19s      ms/item 38.10
+ppl sampling        items 36000   time 26m 56s      ms/item 37.71
+ppl sampling        items 37000   time 27m 34s      ms/item 37.71
+ppl sampling        items 38000   time 28m 13s      ms/item 38.49
+ppl sampling        items 39000   time 28m 50s      ms/item 37.68
+ppl sampling        items 40000   time 29m 28s      ms/item 37.59
+ppl sampling        items 41000   time 30m 05s      ms/item 37.46
+ppl sampling        items 42000   time 30m 43s      ms/item 37.70
+ppl sampling        items 43000   time 31m 21s      ms/item 37.81
+ppl sampling        items 44000   time 31m 58s      ms/item 37.58
+ppl sampling        items 45000   time 32m 36s      ms/item 37.65
+ppl sampling        items 46000   time 33m 14s      ms/item 38.13
+ppl sampling        items 47000   time 33m 52s      ms/item 38.00
+ppl sampling        items 48000   time 34m 30s      ms/item 37.78
+ppl sampling        items 49000   time 35m 08s      ms/item 38.37
+ppl sampling        items 50000   time 35m 46s      ms/item 37.98
+{"results": {"ppl2_wend": 26.36884117126465}, "metric": "ppl2_wend", "total_time": 2169.725517988205, "total_time_str": "36m 10s", "num_gpus": 1, "snapshot_pkl": "network-snapshot-000096.pkl", "timestamp": 1773665236.7871382}
+
+Exiting...

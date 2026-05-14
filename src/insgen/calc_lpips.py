@@ -1,0 +1,92 @@
+import os
+import sys
+import glob
+import csv
+import torch
+import lpips
+import itertools
+import numpy as np
+
+# --- 1. CONFIGURATION ---
+INSGEN_DIR = os.path.join(BASE_DIR, "src", "insgen")
+RUN_DIR = os.path.join(BASE_DIR, "src", "insgen", "training-runs", "00003-panda-mirror-paper256-kimg200-resumecustom")
+OUTPUT_CSV = os.path.join(RUN_DIR, "custom_lpips_metrics.csv")
+
+NUM_IMAGES = 20 # 20 images = 190 unique pairs
+
+if INSGEN_DIR not in sys.path:
+    sys.path.append(INSGEN_DIR)
+
+import dnnlib
+import legacy
+from torch_utils.ops import bias_act, upfirdn2d, conv2d_gradfix, grid_sample_gradfix
+
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+
+
+# Disable custom C++ ops
+bias_act.enabled = False
+upfirdn2d.enabled = False
+conv2d_gradfix.enabled = False
+grid_sample_gradfix.enabled = False
+
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+
+print("\n" + "="*70)
+print("INITIALIZING LPIPS VGG NETWORK (INSGEN)...")
+loss_fn_vgg = lpips.LPIPS(net='vgg').to(device)
+print("="*70 + "\n")
+
+# --- 2. FIND SNAPSHOTS ---
+search_path = os.path.join(RUN_DIR, "network-snapshot-*.pkl")
+pkl_files_to_test = sorted(glob.glob(search_path))
+
+if not pkl_files_to_test:
+    print(f"ERROR: No files found in {search_path}")
+    sys.exit()
+
+print(f"Found {len(pkl_files_to_test)} snapshots. Beginning batch evaluation...\n")
+
+# --- 3. BATCH EVALUATION LOOP ---
+with open(OUTPUT_CSV, mode='w', newline='') as csv_file:
+    csv_writer = csv.writer(csv_file)
+    csv_writer.writerow(['snapshot_pkl', 'kimg', 'lpips_avg'])
+
+    for idx, pkl_file in enumerate(pkl_files_to_test, 1):
+        snapshot_name = os.path.basename(pkl_file)
+        kimg = int(snapshot_name.split('-')[-1].split('.')[0])
+        
+        print(f"[{idx}/{len(pkl_files_to_test)}] Evaluating: {snapshot_name}")
+        
+        with dnnlib.util.open_url(pkl_file) as f:
+            G = legacy.load_network_pkl(f)['G_ema'].to(device)
+        
+        torch.manual_seed(42)
+        z = torch.randn([NUM_IMAGES, G.z_dim]).to(device)
+        c = None
+        
+        with torch.no_grad():
+            img_tensors = G(z, c, truncation_psi=0.7, noise_mode='const')
+            
+        distances = []
+        pairs = list(itertools.combinations(range(NUM_IMAGES), 2))
+        
+        with torch.no_grad():
+            for i, j in pairs:
+                img_a = img_tensors[i].unsqueeze(0)
+                img_b = img_tensors[j].unsqueeze(0)
+                distance = loss_fn_vgg(img_a, img_b)
+                distances.append(distance.item())
+                
+        average_lpips = np.mean(distances)
+        print(f"    ↳ LPIPS Score: {average_lpips:.4f} (Higher = More Diverse)")
+        
+        csv_writer.writerow([snapshot_name, kimg, average_lpips])
+        
+        del G
+        del img_tensors
+        torch.cuda.empty_cache()
+
+print("\n" + "="*70)
+print(f"EVALUATION COMPLETE - Results saved to:\n{OUTPUT_CSV}")
+print("="*70)

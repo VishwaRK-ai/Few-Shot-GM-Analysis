@@ -1,0 +1,4 @@
+Evaluation Metric: Frechet Inception Distance (FID-100 Proxy)
+Model: FakeCLR (340 kimg)
+----------------------------------------
+FINAL FID SCORE: 485.2204
