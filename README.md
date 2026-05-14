@@ -60,7 +60,7 @@ Few-Shot-GM-Analysis/
 │   └── stylegan2-ADA-pytorch/
 ├── notebooks/         # Jupyter notebooks for JSON ingestion and temporal trajectory plotting
 ├── samples/           # Selected high-quality output grids demonstrating generation capabilities
-├── docs/              # PDFs, Reports, and documentation
+├── Few_shot_Generative_Modelling_Analysis.pdf              # PDFs, Reports, and documentation
 
 ```
 
